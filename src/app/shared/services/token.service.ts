@@ -24,7 +24,6 @@ export class TokenService {
 
   sessionExpire() {
     let exp = new Date(localStorage.getItem('token_exp') as string);
-    console.log(exp);
 
     if (exp) {
       let session_time = setInterval(() => {

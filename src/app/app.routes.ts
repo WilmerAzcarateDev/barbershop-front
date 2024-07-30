@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AdminLayoutComponent } from '@domains/admin/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from '@domains/auth/auth-layout/auth-layout.component';
 import { LoginComponent } from '@domains/auth/pages/login/login.component';
 import { RegisterComponent } from '@domains/auth/pages/register/register.component';
@@ -13,6 +14,10 @@ export const routes: Routes = [
     {
         path:'home',
         component:HomeLayoutComponent
+    },
+    {
+        path:'admin',
+        component:AdminLayoutComponent,
     },
     {
         path:'auth',
