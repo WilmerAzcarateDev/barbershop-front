@@ -1,14 +1,12 @@
-import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
 
-export function PasswordValidator(): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: boolean } | null => {
-    const password = control.get('password');
-    const passwordConfirmation = control.get('password_confirmation');
-
-    if (!password || !passwordConfirmation) {
-      return null;
-    }
-
-    return password.value === passwordConfirmation.value ? null : { 'mismatch': true };
-  };
+export function PasswordValidator(control: AbstractControl) {
+  // Example validation logic
+  const password = control.get('password')?.value;
+  const passwordConfirmation = control.get('password_confirmation')?.value;
+  
+  if (password !== passwordConfirmation) {
+    return { passwordMismatch: true };
+  }
+  return null;
 }

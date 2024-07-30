@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { RegisterModel } from '@shared/models/register.model';
 import { TokenModel } from '@shared/models/token.model';
 import { AuthService } from '@shared/services/auth.service';
@@ -28,6 +28,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   auth_service = inject(AuthService);
   token_service = inject(TokenService);
   form_builder = inject(FormBuilder);
+  router = inject(Router);
 
   form: FormGroup;
 
@@ -53,6 +54,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.register_sub = this.auth_service.register(data).subscribe({
       next: (token: TokenModel) => {
         this.token_service.setToken(token);
+        this.router.navigate(['/home']);
       },
     });
   }
@@ -77,7 +79,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
         ],
         password_confirmation: [null, [Validators.required]],
       },
-      { validator: PasswordValidator() }
+      {
+        validators: PasswordValidator,
+      }
     );
   }
 }

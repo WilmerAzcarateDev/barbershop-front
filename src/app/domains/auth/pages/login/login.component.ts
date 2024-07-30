@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit,OnDestroy{
     this.login_sub = this.auth_service.login(credentials).subscribe({
       next:(token:TokenModel)=>{
         this.token_service.setToken(token);
-        this.router.navigate(['/auth/register']);
+        this.router.navigate(['/home']);
       }
     })
   }
